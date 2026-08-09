@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winta Hotel | Harar, Ethiopia</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">ዊንታ <span>ሆቴል</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">መነሻ</a></li>
+        <li><a href="#amenities">አገልግሎቶች</a></li>
+        <li><a href="#rooms">ክፍሎች</a></li>
+        <li><a href="#contact">ያግኙን</a></li>
+      </ul>
+      <div style-="display: flex; align-items: center; gap: 15px;">
+       <a href="index.html" style="text-decoration: none; font-weight: 700; color: var(--dark)">EN</a>
+      <button class="btn-primary" id="navBookBtn">አሁኑኑ ያስይዙ</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>እንኳን ወደ ዊንታ ሆቴል በደህና መጡ</h1>
+      <p>ምቾት፣ እንግዳ ተቀባይነት እና ምቹነት በሐረር፣ ኢትዮጵያ</p>
+      <button class="btn-primary" id="heroBookBtn">ቦታ እንዳለ ያረጋግጡ</button>
+    </div>
+  </section>
+
+  <!-- Amenities -->
+  <section id="amenities">
+    <h2 class="section-title">የሆቴሉ አገልግሎቶች</h2>
+    <div class="grid-3">
+      <div class="card">
+        <i class="fa-solid fa-square-parking"></i>
+        <h3>ነፃ አስተማማኝ የመኪና ማቆሚያ</h3>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-utensils"></i>
+        <h3>በሆቴሉ ውስጥ የሚገኝ ምግብ ቤት እና የዳቦ መጋገሪያ</h3>
+        <p>በየቀኑ በሚቀርቡ ትኩስ የኮንቲኔንታል ቁርሶች፣ የሀገር ባህል ምግቦች እና አዲስ የተጋገሩ የዳቦ ውጤቶች ይደሰቱ።</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-wifi"></i>
+        <h3>ነፃ ከፍተኛ ፍጥነት ያለው ዋይፋይ የኢንተርኔት አገልግሎት</h3>
+        <p>በግቢው በሙሉ በሚገኘው ነፃ ከፍተኛ ፍጥነት ያለው ኢንተርኔት ሁልጊዜ እንደተገናኙ ይቆዩ።</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-concierge-bell"></i>
+        <h3>የ24 ሰዓት ሪሴፕሽን</h3>
+        <p>እንግዳ ተቀባዩ ባለቤት ዳንኤል እና ሰራተኞቻቸው እንደ ቤትዎ እንዲሰማዎት ለማድረግ ዝግጁ ናቸው።</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms -->
+  <section id="rooms">
+    <h2 class="section-title">Our Accommodations</h2>
+    <div class="grid-3">
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80" alt="Standard Room">
+        <div class="room-info">
+          <h3>መደበኛ ባለ ሁለት አልጋ ክፍል</h3>
+          <p>ምቹ ባለ ሁለት አልጋ፣ የግል መታጠቢያ ቤት፣ ፍሪጅ እና ጸጥተኛ አካባቢ የተሟላለት።</p>
+          <button class="btn-primary book-room-btn" data-room="Standard Double Room">አሁኑኑ ያስይዙ</button>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Balcony Twin Room">
+        <div class="room-info">
+          <h3>ባልኮን ያለው ባለ ሁለት ነጠላ አልጋ ክፍል</h3>
+          <p>ባለ ሁለት ነጠላ አልጋዎች፣ ማራኪ እይታ ያለው የግል ባልኮን፣ መታጠቢያ ቤት እና ነፃ ዋይፋይ የተሟላለት።</p>
+          <button class="btn-primary book-room-btn" data-room="Twin Room with Balcony">አሁኑኑ ያስይዙ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Contact -->
+  <section id="contact">
+    <h2 class="section-title">አድራሻ እና የመገናኛ መረጃ</h2>
+    <div class="contact-container">
+      <div class="contact-details">
+        <h3>በቀጥታ ያነጋግሩን</h3>
+        <br>
+        <p><i class="fa-solid fa-location-dot"></i>አብዱልሐፊዝ ኸሊፋ መንገድ (አራተኛ መንገድ)፣ ሐረር፣ ኢትዮጵያ</p>
+        <p><i class="fa-solid fa-phone"></i> +251 91 574 0050</p>
+        <p><i class="fa-solid fa-star"></i> 4.0 ከ 5.0 (105 የጉግል አስተያየቶች)</p>
+        <p><i class="fa-solid fa-landmark"></i> ከራስ መኮንን ሐውልት እና ከጅጎል (የድሮዋ ሐረር) በ2.7 ኪሎሜትር ርቀት ላይ ይገኛል</p>
+      </div>
+      <div>
+        <a href="https://maps.google.com/?q=8475%2B86P,+Abdulhafiz+Kalifa+St,+Harar" target="_blank" rel="noopener noreferrer" class="btn-primary maps-btn">
+          <i class="fa-solid fa-map-location-dot"></i> አድራሻውን በጉግል ማፕ ይመልከቱ
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Modal Form -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+      <h2>የክፍል ማስያዣ ጥያቄ</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label for="fullName">የእርስዎ ሙሉ ስም</label>
+          <input type="text" id="fullName" required placeholder="e.g. Abebe Bikila">
+        </div>
+        <div class="form-group">
+          <label for="phone">የስልክ ቁጥር</label>
+          <input type="tel" id="phone" required placeholder="0912345678">
+        </div>
+        <div class="form-group">
+          <label for="roomSelect">የክፍሉ ዓይነት</label>
+          <select id="roomSelect">
+            <option value="Standard Double Room">መደበኛ ባለ ሁለት አልጋ ክፍል</option>
+            <option value="Twin Room with Balcony">ባልኮን ያለው ባለ ሁለት ነጠላ አልጋ ክፍል</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="checkIn">የሚገቡበት ቀን</label>
+          <input type="date" id="checkIn" required>
+        </div>
+        <button type="submit" class="btn-primary full-width">ጥያቄ ይላኩ / ያስገቡ</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 ዊንታ ሆቴል፣ ሐረር። መብቱ በሕግ የተጠበቀ ነው።</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
