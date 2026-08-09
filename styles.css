@@ -265,3 +265,28 @@ footer {
   padding: 2rem;
   margin-top: 2rem;
 }
+/* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 768px) {
+ .nav-container {
+    flex-wrap: wrap; /* Allows items to stack if they run out of room */
+    padding: 1rem;
+ }
+  
+  .nav-links {
+    width: 100%;
+    margin-top: 15px;
+    justify-content: flex-start;
+    overflow-x: auto; /* This enables the horizontal sliding you wanted! */
+    white-space: nowrap; /* Prevents text from dropping to the next line */
+    padding-bottom: 5px;
+  }
+
+  /* Hides the ugly scrollbar on mobile while keeping the slide effect */
+  .nav-links::-webkit-scrollbar {
+    display: none; 
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem; /* Makes the main title fit better on small phone screens */
+  }
+    }
