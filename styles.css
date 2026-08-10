@@ -18,7 +18,7 @@
 }
 
 body {
-  background-color: var(--light);
+  background-color: #978661;
   color: var(--dark);
   line-height: 1.6;
 }
@@ -28,7 +28,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: var(--white);
+  background: #978661;
   box-shadow: var(--shadow);
   z-index: 1000;
 }
