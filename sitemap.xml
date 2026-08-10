@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ropac27.github.io/winta-hotel/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="am" href="https://ropac27.github.io/winta-hotel/amharic.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ropac27.github.io/winta-hotel/index.html"/>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://ropac27.github.io/winta-hotel/amharic.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ropac27.github.io/winta-hotel/index.html"/>
+    <xhtml:link rel="alternate" hreflang="am" href="https://ropac27.github.io/winta-hotel/amharic.html"/>
+    <priority>0.90</priority>
+  </url>
+</urlset>
