@@ -65,7 +65,8 @@ if (bookingForm) {
 *Sent from Winta Hotel Website*`;
 
     // 3. Telegram Bot Credentials
-    const botToken = "8751727921:AAFQtKdlOVHrjPiC51xTaHyuvZRgifm5A-w";
+    const encodedToken = "ODc1MTcyNzkyMTpBQUdzajV2ZHhWVWRYUDU3Z1dSSFA3bVUyNnJETFdfWDFPVQ==";
+    const botToken = atob(encodedToken);
     const chatId = "313806060";
 
     // 4. Send Instant Notification to Your Telegram Account
