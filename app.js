@@ -1,60 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('bookingModal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
+  // 1. Translation Dictionary (Include Success Message Keys)
+  const translations = {
+    en: {
+      navHome: "Home",
+      navAmenities: "Amenities",
+      navRooms: "Rooms",
+      navContact: "Contact",
+      bookNow: "Book Now",
+      successTitle: "Booking Request Sent!",
+      successDesc: "Thank you for choosing Winta Hotel. We have received your booking request and will contact you shortly.",
+      successBtn: "OK"
+    },
+    am: {
+      navHome: "መነሻ",
+      navAmenities: "አገልግሎቶች",
+      navRooms: "ክፍሎች",
+      navContact: "አድራሻ",
+      bookNow: "ይመዝገቡ",
+      successTitle: "የክፍል ማስያዣ ጥያቄዎ ተላክዋል!",
+      successDesc: "ዊንታ ሆቴልን ስለመረጡ እናመሰግናለን! የክፍል ማስያዣ ጥያቄዎ ደርሶናል፣ በቅርብ ጊዜ እናነጋግርዎታለን።",
+      successBtn: "እሺ"
+    }
+  };
+
+  let currentLang = localStorage.getItem('winta_lang') || 'en';
+
+  const applyLanguage = (lang) => {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        element.textContent = translations[lang][key];
+      }
+    });
+  };
+
+  applyLanguage(currentLang);
+
+  // Success Modal Elements
+  const successModal = document.getElementById('successModal');
+  const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+
+  const showSuccessAlert = () => {
+    if (successModal) {
+      successModal.style.display = 'flex';
+    }
+  };
+
+  const closeSuccessAlert = () => {
+    if (successModal) {
+      successModal.style.display = 'none';
+    }
+  };
+
+  if (closeSuccessBtn) {
+    closeSuccessBtn.addEventListener('click', closeSuccessAlert);
+  }
+
+  // Handle Form Submission
   const bookingForm = document.getElementById('bookingForm');
   const roomSelect = document.getElementById('roomSelect');
+  const modal = document.getElementById('bookingModal');
 
-  const navBookBtn = document.getElementById('navBookBtn');
-  const heroBookBtn = document.getElementById('heroBookBtn');
-  const roomBookBtns = document.querySelectorAll('.book-room-btn');
-
-  // Open Modal
-  const openModal = (roomType = '') => {
-    if (roomType && roomSelect) {
-      roomSelect.value = roomType;
-    }
-    modal.style.display = 'flex';
-  };
-
-  // Close Modal
   const closeModal = () => {
-    modal.style.display = 'none';
+    if (modal) modal.style.display = 'none';
   };
 
-  // Button Listeners
-  if (navBookBtn) navBookBtn.addEventListener('click', () => openModal());
-  if (heroBookBtn) heroBookBtn.addEventListener('click', () => openModal());
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-  roomBookBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const selectedRoom = e.target.getAttribute('data-room');
-      openModal(selectedRoom);
-    });
-  });
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const room = roomSelect.value;
+      const date = document.getElementById('checkIn').value;
 
-  // Close Button Listener
-  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-
-  // Close when clicking outside of modal box
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-  // Handle Form Submission - Multi-Channel Delivery
-  // Handle Form Submission - Multi-Channel Delivery (WhatsApp, Web3Forms Email & Telegram Bot)
-if (bookingForm) {
-  bookingForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // 1. Extract Form Data
-    const name = document.getElementById('fullName').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const room = roomSelect.value;
-    const date = document.getElementById('checkIn').value;
-
-    // 2. Format Message Text
-    const formattedMessage = 
+      const formattedMessage = 
 `🏨 *New Room Booking Request - Winta Hotel*
 
 👤 *Guest Name:* ${name}
@@ -64,53 +85,45 @@ if (bookingForm) {
 
 *Sent from Winta Hotel Website*`;
 
-    // 3. Telegram Bot Credentials
-    const encodedToken = "ODc1MTcyNzkyMTpBQUdzajV2ZHhWVWRYUDU3Z1dSSFA3bVUyNnJETFdfWDFPVQ==";
-    const botToken = atob(encodedToken);
-    const chatId = "313806060";
+      // 1. Send Telegram Notification
+      const encodedToken = "ODc1MTcyNzkyMTpBQUdzajV2ZHhWVWRYUDU3Z1dSSFA3bVUyNnJETFdfWDFPVQ=="; // Insert Base64 token
+      const botToken = atob(encodedToken);
+      const chatId = "313806060";
 
-    // 4. Send Instant Notification to Your Telegram Account
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: formattedMessage,
-        parse_mode: 'Markdown'
-      })
-    })
-    .then(res => res.json())
-    .then(data => console.log('Telegram Bot Notification Sent:', data))
-    .catch(err => console.error('Telegram Error:', err));
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: formattedMessage,
+          parse_mode: 'Markdown'
+        })
+      }).catch(err => console.error('Telegram error:', err));
 
-    // 5. Send Background Email via Web3Forms
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        access_key: '2da4071b-5680-41fd-9e1a-cd2b2619f0be', 
-        to_email: 'rtesfaye482@gmail.com',
-        subject: `New Booking Inquiry from ${name}`,
-        from_name: 'Winta Hotel Booking Bot',
-        name: name,
-        phone: phone,
-        room: room,
-        check_in_date: date,
-        message: formattedMessage
-      })
-    })
-    .then(res => res.json())
-    .then(data => console.log('Web3Forms Email Sent:', data))
-    .catch(err => console.error('Web3Forms Error:', err));
+      // 2. Send Background Email via Web3Forms
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '2da4071b-5680-41fd-9e1a-cd2b2619f0be',
+          to_email: 'rtesfaye482@gmail.com',
+          subject: `New Booking Inquiry from ${name}`,
+          from_name: 'Winta Hotel Booking Bot',
+          name: name,
+          phone: phone,
+          room: room,
+          check_in_date: date,
+          message: formattedMessage
+        })
+      }).catch(err => console.error('Web3Forms error:', err));
 
-    // 7. Clear Form & Close Modal
-    bookingForm.reset();
-    closeModal();
-  });
-}
+      // 3. Reset form, close booking modal, and display success alert
+      bookingForm.reset();
+      closeModal();
+      showSuccessAlert();
+    });
+  }
 });
