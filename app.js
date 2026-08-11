@@ -102,12 +102,10 @@ if (bookingForm) {
         check_in_date: date,
         message: formattedMessage
       })
-    }).catch(err => console.log('Web3Forms background send error:', err));
-
-    // 6. Launch WhatsApp Chat in Background/New Tab
-    const whatsappPhone = "251927921702";
-    const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(formattedMessage)}`;
-    window.open(whatsappUrl, '_blank');
+    })
+    .then(res => res.json())
+    .then(data => console.log('Web3Forms Email Sent:', data))
+    .catch(err => console.error('Web3Forms Error:', err));
 
     // 7. Clear Form & Close Modal
     bookingForm.reset();
